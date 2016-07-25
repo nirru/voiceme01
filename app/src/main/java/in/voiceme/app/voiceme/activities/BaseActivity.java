@@ -7,6 +7,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.squareup.otto.Bus;
+
 import in.voiceme.app.voiceme.R;
 import in.voiceme.app.voiceme.infrastructure.VoicemeApplication;
 import in.voiceme.app.voiceme.views.NavDrawer;
@@ -16,12 +18,21 @@ public abstract class BaseActivity extends ActionBarActivity {
     protected VoicemeApplication application;
     protected Toolbar toolbar;
     protected NavDrawer navDrawer;
+    protected Bus bus;
 
     @Override
     protected void onCreate(Bundle savedState) {
         super.onCreate(savedState);
-
         application = (VoicemeApplication) getApplication();
+        bus = application.getBus();
+
+        bus.register(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        bus.unregister(this);
     }
 
     @Override

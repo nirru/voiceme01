@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.soundcloud.android.crop.Crop;
+import com.squareup.otto.Subscribe;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ import java.util.List;
 
 import in.voiceme.app.voiceme.R;
 import in.voiceme.app.voiceme.infrastructure.User;
+import in.voiceme.app.voiceme.services.Account;
 import in.voiceme.app.voiceme.views.MainNavDrawer;
 
 public class ProfileActivity extends BaseAuthenticatedActivity implements View.OnClickListener {
@@ -141,9 +143,18 @@ public class ProfileActivity extends BaseAuthenticatedActivity implements View.O
                     .start(this);
         } else if (requestCode == Crop.REQUEST_CROP) {
             // todo: Send tempFileUri to server as new avatar
-            avatarView.setImageResource(0);
-            avatarView.setImageURI(Uri.fromFile(tempOutputFile));
+            avatarProgressFrame.setVisibility(View.VISIBLE);
+            bus.post(new Account.ChangeAvatarRequest(Uri.fromFile(tempOutputFile)));
+
+            /* avatarView.setImageResource(0);
+            avatarView.setImageURI(Uri.fromFile(tempOutputFile)); */
         }
+    }
+
+    @Subscribe
+    public void onAvatarUpdated(Account.ChangeAvatarResponse response) {
+        avatarProgressFrame.setVisibility(View.GONE);
+        // todo: handle errors
     }
 
     @Override
