@@ -4,6 +4,8 @@ import android.app.Application;
 
 import com.squareup.otto.Bus;
 
+import in.voiceme.app.voiceme.services.Module;
+
 /**
  * Created by Harish on 7/20/2016.
  */
@@ -19,6 +21,7 @@ public class VoicemeApplication extends Application {
     public void onCreate(){
         super.onCreate();
         auth = new Auth(this);
+        Module.register(this);
     }
 
     public Auth getAuth() {

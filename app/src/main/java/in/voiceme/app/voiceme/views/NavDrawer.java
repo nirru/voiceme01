@@ -42,6 +42,12 @@ public class NavDrawer {
                 setOpen(!isOpen());
             }
         });
+
+        activity.getVoicemeApplication().getBus().register(this);
+    }
+
+    public void destroy() {
+        activity.getVoicemeApplication().getBus().unregister(this);
     }
 
     public void addItem(NavDrawerItem item) {
@@ -205,4 +211,5 @@ public class NavDrawer {
             });
         }
     }
+
 }

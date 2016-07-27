@@ -3,7 +3,8 @@ package in.voiceme.app.voiceme.views;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.squareup.otto.Subscribe;
 
 import in.voiceme.app.voiceme.R;
 import in.voiceme.app.voiceme.activities.BaseActivity;
@@ -12,6 +13,7 @@ import in.voiceme.app.voiceme.activities.HomeActivity;
 import in.voiceme.app.voiceme.activities.MainActivity;
 import in.voiceme.app.voiceme.activities.ProfileActivity;
 import in.voiceme.app.voiceme.infrastructure.User;
+import in.voiceme.app.voiceme.services.Account;
 
 
 public class MainNavDrawer extends NavDrawer {
@@ -29,7 +31,8 @@ public class MainNavDrawer extends NavDrawer {
         addItem(new BasicNavDrawerItem("Logout", null, R.mipmap.ic_action_backspace, R.id.include_main_nav_drawer_bottomItems) {
             @Override
             public void onClick(View view) {
-                Toast.makeText(activity, "You have logged out!", Toast.LENGTH_SHORT).show();
+                /*Toast.makeText(activity, "You have logged out!", Toast.LENGTH_SHORT).show();*/
+                activity.getVoicemeApplication().getAuth().logout();
             }
         });
 
@@ -40,5 +43,11 @@ public class MainNavDrawer extends NavDrawer {
         displayNameText.setText(loggedInUser.getUserNickName());
 
         // todo: change avatarImage to avatarUrl from loggedInUser
+    }
+
+    @Subscribe
+    public void onUserDetailsUpdated(Account.UserDetailsUpdatedEvent event) {
+        // todo: update avatar URL
+        displayNameText.setText(event.User.getUserNickName());
     }
 }
