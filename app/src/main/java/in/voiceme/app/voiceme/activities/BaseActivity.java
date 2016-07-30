@@ -3,39 +3,75 @@ package in.voiceme.app.voiceme.activities;
 import android.animation.Animator;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.squareup.otto.Bus;
 
 import in.voiceme.app.voiceme.R;
+import in.voiceme.app.voiceme.infrastructure.ActionScheduler;
 import in.voiceme.app.voiceme.infrastructure.VoicemeApplication;
 import in.voiceme.app.voiceme.views.NavDrawer;
 
 
-public abstract class BaseActivity extends ActionBarActivity {
+public abstract class BaseActivity extends AppCompatActivity {
+    private boolean isRegisterdWithBus;
+
     protected VoicemeApplication application;
     protected Toolbar toolbar;
     protected NavDrawer navDrawer;
     protected Bus bus;
+    protected ActionScheduler scheduler;
 
     @Override
     protected void onCreate(Bundle savedState) {
         super.onCreate(savedState);
         application = (VoicemeApplication) getApplication();
         bus = application.getBus();
+        scheduler = new ActionScheduler(application);
 
         bus.register(this);
+        isRegisterdWithBus = true;
+    }
+
+    public ActionScheduler getScheduler() {
+        return scheduler;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        scheduler.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        scheduler.onPause();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        bus.unregister(this);
+
+        if (isRegisterdWithBus) {
+            bus.unregister(this);
+            isRegisterdWithBus = false;
+        }
 
         if (navDrawer != null)
             navDrawer.destroy();
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+
+        if (isRegisterdWithBus) {
+            bus.unregister(this);
+            isRegisterdWithBus = false;
+        }
     }
 
     @Override

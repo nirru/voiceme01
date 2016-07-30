@@ -3,11 +3,15 @@ package in.voiceme.app.voiceme.activities;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.ogaclejapan.smarttablayout.SmartTabLayout;
+
 import in.voiceme.app.voiceme.R;
+import in.voiceme.app.voiceme.views.MainActivityFragmentPagerAdapter;
 import in.voiceme.app.voiceme.views.MainNavDrawer;
 
 public class MainActivity extends BaseAuthenticatedActivity {
@@ -27,6 +31,15 @@ public class MainActivity extends BaseAuthenticatedActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager_main_activity);
+        viewPager.setAdapter(new MainActivityFragmentPagerAdapter(getSupportFragmentManager()));
+
+        // Give the PagerSlidingTabStrip the ViewPager
+        SmartTabLayout tabsStrip = (SmartTabLayout) findViewById(R.id.tabs_main_activity);
+        // Attach the view pager to the tab strip
+        tabsStrip.setViewPager(viewPager);
+
     }
 
     @Override

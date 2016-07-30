@@ -14,6 +14,7 @@
         <activity
             android:name=".activities.MainActivity"
             android:label="@string/app_name"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,23 +25,24 @@
         <activity
             android:name=".activities.LoginActivity"
             android:label="@string/title_activity_login"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
-        <activity android:name=".activities.LoginNarrowActivity" />
+        <activity android:name=".activities.LoginNarrowActivity" android:screenOrientation="portrait" />
 
-        <activity android:name=".activities.RegisterActivity" />
+        <activity android:name=".activities.RegisterActivity" android:screenOrientation="portrait" />
 
-        <activity android:name=".activities.ExternalLoginActivity" />
+        <activity android:name=".activities.ExternalLoginActivity" android:screenOrientation="portrait" />
 
-        <activity android:name=".activities.ProfileActivity" />
+        <activity android:name=".activities.ProfileActivity" android:screenOrientation="portrait" />
 
-        <activity android:name=".activities.HomeActivity" />
+        <activity android:name=".activities.HomeActivity" android:screenOrientation="portrait" />
 
-        <activity android:name=".activities.DiscoverActivity" />
+        <activity android:name=".activities.DiscoverActivity" android:screenOrientation="portrait" />
 
-        <activity android:name="com.soundcloud.android.crop.CropImageActivity" />
+        <activity android:name="com.soundcloud.android.crop.CropImageActivity" android:screenOrientation="portrait" />
 
-        <activity android:name=".activities.AuthenticationActivity" />
+        <activity android:name=".activities.AuthenticationActivity" android:screenOrientation="portrait" />
 
     </application>
 

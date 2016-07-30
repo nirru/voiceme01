@@ -35,7 +35,7 @@ public final class Account {
     }
 
     /* Server returns the response for register login with username and passsword */
-    public static class LoginWithUsernameResponse extends UserResponse {
+    public static class LoginWithUsernameResponse extends ServiceResponse {
     }
 
     /* login with local auth token that came from above register */
@@ -120,6 +120,7 @@ public final class Account {
     }
 
     public static class ChangeAvatarResponse extends ServiceResponse {
+        public String avatarUrl;
     }
 
     public static class UpdateProfileRequest {
@@ -133,6 +134,8 @@ public final class Account {
     }
 
     public static class UpdateProfileResponse extends ServiceResponse {
+        public String displayName;
+        public String Email;
     }
 
     public static class ChangePasswordRequest {
@@ -156,6 +159,18 @@ public final class Account {
         public UserDetailsUpdatedEvent(in.voiceme.app.voiceme.infrastructure.User user) {
             User = user;
         }
+    }
+
+    public static class UpdateGcmRegistrationRequest{
+        public String registrationId;
+
+        public UpdateGcmRegistrationRequest(String registrationId) {
+            this.registrationId = registrationId;
+        }
+    }
+
+    public static class UpdateGcmRegistrationResponse extends ServiceResponse{
+
     }
 
 

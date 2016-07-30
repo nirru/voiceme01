@@ -20,6 +20,7 @@ import android.widget.ImageView;
 
 import com.soundcloud.android.crop.Crop;
 import com.squareup.otto.Subscribe;
+import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -80,6 +81,7 @@ public class ProfileActivity extends BaseAuthenticatedActivity implements View.O
 
         User user = application.getAuth().getUser();
         getSupportActionBar().setTitle(user.getUserNickName());
+        Picasso.with(this).load(user.getAvatarPics()).into(avatarView);
 
         if (savedState == null) {
             displayNameText.setText(user.getUserNickName());
@@ -96,6 +98,7 @@ public class ProfileActivity extends BaseAuthenticatedActivity implements View.O
     @Subscribe
     public void onUserDetailsUpdated(Account.UserDetailsUpdatedEvent event) {
         getSupportActionBar().setTitle(event.User.getUserNickName());
+        Picasso.with(this).load(event.User.getAvatarPics()).into(avatarView);
     }
 
     @Override
