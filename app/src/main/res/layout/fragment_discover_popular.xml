@@ -4,5 +4,11 @@
     android:layout_height="match_parent"
     tools:context=".fragments.DiscoverPopularFragment">
 
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/mRecyclerDoc"
+        class="android.supportv7.widget.RecyclerView"/>
+
 
 </FrameLayout>

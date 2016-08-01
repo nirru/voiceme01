@@ -2,7 +2,6 @@ package in.voiceme.app.voiceme.fragments;
 
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,7 @@ import in.voiceme.app.voiceme.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ActivityYourFeedFragment extends Fragment {
+public class ActivityYourFeedFragment extends BaseFragment {
     public static final String ARG_FEED_PAGE = "ARG_FEED_PAGE";
 
     private int mPage;

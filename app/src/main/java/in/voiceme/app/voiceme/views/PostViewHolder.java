@@ -33,6 +33,7 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
     private TextView same;
     private TextView duration;
     private TextView listen;
+    private View backgroundView;
 
     private int likesCount;
     private int hugCount;
@@ -60,12 +61,18 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
         duration = (TextView) view.findViewById(R.id.list_item_posts_duration);
         listen = (TextView) view.findViewById(R.id.list_item_posts_listen);
 
+        backgroundView = view.findViewById(R.id.list_item_post_background);
+
+    }
+
+    public View getBackgroundView() {
+        return backgroundView;
     }
 
     public void populate(Context context, PostCardView postCardView){
         itemView.setTag(postCardView);
 
-        Picasso.with(context).load("http://i.imgur.com/DvpvklR.png").into(avatarUrl);
+        Picasso.with(context).load(postCardView.getOtherUser().getAvatar_url()).into(avatarUrl);
 
         String timeStamp = DateUtils.formatDateTime(
                 context,
@@ -77,7 +84,6 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
         category.setText(postCardView.getCategory());
         feeling.setText(postCardView.getFeeling());
         postMessage.setText(postCardView.getPostMessage());
-        readMore.setText(postCardView.getReadMore());
         likes.setText(postCardView.getLikes());
         hug.setText(postCardView.getHug());
         duration.setText(postCardView.getDuration());

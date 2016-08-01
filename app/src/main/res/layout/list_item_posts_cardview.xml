@@ -6,12 +6,13 @@
     android:layout_height="wrap_content"
     app:cardCornerRadius="0dp"
     app:cardUseCompatPadding="true"
-    android:layout_margin="3dp">
+    android:layout_margin="5dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="10dp">
+        android:padding="10dp"
+        android:id="@+id/list_item_post_background">
 
         <ImageView
             android:layout_width="37dp"

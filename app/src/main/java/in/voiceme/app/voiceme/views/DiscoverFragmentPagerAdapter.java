@@ -1,8 +1,11 @@
 package in.voiceme.app.voiceme.views;
 
+
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
+import java.util.ArrayList;
 
 import in.voiceme.app.voiceme.fragments.DiscoverLatestFragment;
 import in.voiceme.app.voiceme.fragments.DiscoverPopularFragment;
@@ -12,6 +15,8 @@ import in.voiceme.app.voiceme.fragments.DiscoverTrendingFragment;
  * Created by Harish on 7/29/2016.
  */
 public class DiscoverFragmentPagerAdapter extends FragmentPagerAdapter {
+    ArrayList<Fragment> pages = new ArrayList<>();
+
     final int PAGE_COUNT = 3;
     private String tabTitles[] = new String[] { "Latest", "Trending", "Popular" };
 
@@ -36,6 +41,11 @@ public class DiscoverFragmentPagerAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         return PAGE_COUNT;
+    }
+
+    //add a page
+    public void addPage(Fragment fragment){
+        pages.add(fragment);
     }
 
     @Override
