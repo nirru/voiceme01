@@ -2,15 +2,19 @@ package in.voiceme.app.voiceme.fragments;
 
 
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import in.voiceme.app.voiceme.R;
+import java.util.ArrayList;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+import in.voiceme.app.voiceme.R;
+import in.voiceme.app.voiceme.views.MyRecyclerAdapter;
+import in.voiceme.app.voiceme.views.UserPostDetails;
+
+
 public class ActivityYourFeedFragment extends BaseFragment {
     public static final String ARG_FEED_PAGE = "ARG_FEED_PAGE";
 
@@ -41,7 +45,73 @@ public class ActivityYourFeedFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_activity_your_feed, container, false);
+        //recyclerview
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.fragment_main_feed_recyclerview);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+        recyclerView.setAdapter(new MyRecyclerAdapter(this.getActivity(), getMainFeed()));
         return view;
+    }
+
+
+    private ArrayList<UserPostDetails> getMainFeed(){
+        // collection of crime movies
+        ArrayList<UserPostDetails> userPostDetails = new ArrayList<>();
+        UserPostDetails user = new UserPostDetails(R.mipmap.ic_launcher,
+                "timestofly",
+                "is",
+                "sad",
+                "family",
+                "5 minutes ago",
+                "this is a sample post message",
+                "READ MORE....",
+                R.drawable.ic_play_circle_outline_black_24dp);
+        userPostDetails.add(user);
+
+        user = new UserPostDetails(R.mipmap.ic_launcher,
+                "timestofly",
+                "is",
+                "sad",
+                "family",
+                "5 minutes ago",
+                "this is a sample post message",
+                "READ MORE....",
+                R.drawable.ic_play_circle_outline_black_24dp);
+        userPostDetails.add(user);
+
+        user = new UserPostDetails(R.mipmap.ic_launcher,
+                "timestofly",
+                "is",
+                "sad",
+                "family",
+                "5 minutes ago",
+                "this is a sample post message",
+                "READ MORE....",
+                R.drawable.ic_play_circle_outline_black_24dp);
+        userPostDetails.add(user);
+
+        user = new UserPostDetails(R.mipmap.ic_launcher,
+                "timestofly",
+                "is",
+                "sad",
+                "family",
+                "5 minutes ago",
+                "this is a sample post message",
+                "READ MORE....",
+                R.drawable.ic_play_circle_outline_black_24dp);
+        userPostDetails.add(user);
+
+        user = new UserPostDetails(R.mipmap.ic_launcher,
+                "timestofly",
+                "is",
+                "sad",
+                "family",
+                "5 minutes ago",
+                "this is a sample post message",
+                "READ MORE....",
+                R.drawable.ic_play_circle_outline_black_24dp);
+        userPostDetails.add(user);
+
+        return userPostDetails;
     }
 
 }

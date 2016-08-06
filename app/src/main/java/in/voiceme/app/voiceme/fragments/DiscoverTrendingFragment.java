@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import in.voiceme.app.voiceme.R;
-import in.voiceme.app.voiceme.views.Movie;
+import in.voiceme.app.voiceme.views.UserPostDetails;
 import in.voiceme.app.voiceme.views.MyRecyclerAdapter;
 
 public class DiscoverTrendingFragment extends BaseFragment {
@@ -45,16 +45,16 @@ public class DiscoverTrendingFragment extends BaseFragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_discover_trending, container, false);
         //recyclerview
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.mRecyclerDrama);
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.fragment_discover_trending_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
-        recyclerView.setAdapter(new MyRecyclerAdapter(this.getActivity(), getCrimeMovies()));
+        recyclerView.setAdapter(new MyRecyclerAdapter(this.getActivity(), getDiscoverTrending()));
         return view;
     }
 
-    private ArrayList<Movie> getCrimeMovies(){
+    private ArrayList<UserPostDetails> getDiscoverTrending(){
         // collection of crime movies
-        ArrayList<Movie> movies = new ArrayList<>();
-        Movie movie = new Movie(R.mipmap.ic_launcher,
+        ArrayList<UserPostDetails> movies = new ArrayList<>();
+        UserPostDetails movie = new UserPostDetails(R.mipmap.ic_launcher,
                 "timestofly",
                 "is",
                 "sad",
@@ -65,7 +65,7 @@ public class DiscoverTrendingFragment extends BaseFragment {
                 R.drawable.ic_play_circle_outline_black_24dp);
         movies.add(movie);
 
-        movie = new Movie(R.mipmap.ic_launcher,
+        movie = new UserPostDetails(R.mipmap.ic_launcher,
                 "timestofly",
                 "is",
                 "sad",
@@ -76,7 +76,7 @@ public class DiscoverTrendingFragment extends BaseFragment {
                 R.drawable.ic_play_circle_outline_black_24dp);
         movies.add(movie);
 
-        movie = new Movie(R.mipmap.ic_launcher,
+        movie = new UserPostDetails(R.mipmap.ic_launcher,
                 "timestofly",
                 "is",
                 "sad",
@@ -87,7 +87,7 @@ public class DiscoverTrendingFragment extends BaseFragment {
                 R.drawable.ic_play_circle_outline_black_24dp);
         movies.add(movie);
 
-        movie = new Movie(R.mipmap.ic_launcher,
+        movie = new UserPostDetails(R.mipmap.ic_launcher,
                 "timestofly",
                 "is",
                 "sad",
@@ -98,7 +98,7 @@ public class DiscoverTrendingFragment extends BaseFragment {
                 R.drawable.ic_play_circle_outline_black_24dp);
         movies.add(movie);
 
-        movie = new Movie(R.mipmap.ic_launcher,
+        movie = new UserPostDetails(R.mipmap.ic_launcher,
                 "timestofly",
                 "is",
                 "sad",

@@ -16,12 +16,12 @@ import in.voiceme.app.voiceme.R;
  */
 public class MyRecyclerAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
-    Context context;
-    ArrayList<Movie> movies;
+    public Context context;
+    ArrayList<UserPostDetails> userDetails;
 
-    public MyRecyclerAdapter(Context context, ArrayList<Movie> movies) {
+    public MyRecyclerAdapter(Context context, ArrayList<UserPostDetails> userDetails) {
         this.context = context;
-        this.movies = movies;
+        this.userDetails = userDetails;
     }
 
     // initilise holder
@@ -36,27 +36,26 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyViewHolder> {
     //bind the data
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        holder.user_name.setText(movies.get(position).getUsername());
-        holder.isPost.setText(movies.get(position).getIsFeeling());
-        holder.feeling.setText(movies.get(position).getFeeling());
-        holder.category.setText(movies.get(position).getCategory());
-        holder.timeStamp.setText(movies.get(position).getTimeStamp());
-        holder.postMessage.setText(movies.get(position).getPostMessage());
-        holder.postReadMore.setText(movies.get(position).getReadMore());
-        holder.user_avatar.setImageResource(movies.get(position).getAvatarUrl());
-        holder.play_button.setImageResource(movies.get(position).getPlayButton());
+        holder.user_name.setText(userDetails.get(position).getUsername());
+        holder.feeling.setText(userDetails.get(position).getFeeling());
+        holder.category.setText(userDetails.get(position).getCategory());
+        holder.timeStamp.setText(userDetails.get(position).getTimeStamp());
+        holder.postMessage.setText(userDetails.get(position).getPostMessage());
+        holder.postReadMore.setText(userDetails.get(position).getReadMore());
+        holder.user_avatar.setImageResource(userDetails.get(position).getAvatarUrl());
+        holder.play_button.setImageResource(userDetails.get(position).getPlayButton());
 
         //listener
         holder.setItemClickListener(new ItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Toast.makeText(context, movies.get(position).getUsername(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, userDetails.get(position).getUsername(), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return movies.size();
+        return userDetails.size();
     }
 }

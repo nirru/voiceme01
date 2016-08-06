@@ -3,7 +3,7 @@ package in.voiceme.app.voiceme.views;
 /**
  * Created by Harish on 7/31/2016.
  */
-public class Movie {
+public class UserPostDetails {
 
 
     private int avatarUrl;
@@ -17,15 +17,15 @@ public class Movie {
     private String readMore;
     private int playButton;
 
-    public Movie(int avatarUrl,
-                 String username,
-                 String isFeeling,
-                 String feeling,
-                 String category,
-                 String timeStamp,
-                 String postMessage,
-                 String readMore,
-                 int playButton) {
+    public UserPostDetails(int avatarUrl,
+                           String username,
+                           String isFeeling,
+                           String feeling,
+                           String category,
+                           String timeStamp,
+                           String postMessage,
+                           String readMore,
+                           int playButton) {
         this.avatarUrl = avatarUrl;
         this.username = username;
         this.isFeeling = isFeeling;

@@ -4,6 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import java.util.ArrayList;
+
 import in.voiceme.app.voiceme.fragments.ActivityInteractionFragment;
 import in.voiceme.app.voiceme.fragments.ActivityYourFeedFragment;
 
@@ -11,6 +13,8 @@ import in.voiceme.app.voiceme.fragments.ActivityYourFeedFragment;
  * Created by Harish on 7/30/2016.
  */
 public class MainActivityFragmentPagerAdapter extends FragmentPagerAdapter {
+    ArrayList<Fragment> pages = new ArrayList<>();
+
     final int PAGE_COUNT = 2;
     private String tabTitles2[] = new String[] { "Your Feed", "Interactions"};
 
@@ -33,6 +37,11 @@ public class MainActivityFragmentPagerAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         return PAGE_COUNT;
+    }
+
+    //add a page
+    public void addPage(Fragment fragment){
+        pages.add(fragment);
     }
 
     @Override

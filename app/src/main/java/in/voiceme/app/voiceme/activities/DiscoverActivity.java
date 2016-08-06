@@ -9,7 +9,7 @@ import in.voiceme.app.voiceme.R;
 import in.voiceme.app.voiceme.fragments.DiscoverLatestFragment;
 import in.voiceme.app.voiceme.fragments.DiscoverPopularFragment;
 import in.voiceme.app.voiceme.fragments.DiscoverTrendingFragment;
-import in.voiceme.app.voiceme.views.DiscoverFragmentPagerAdapter;
+import in.voiceme.app.voiceme.views.DiscoverActivityFragmentPagerAdapter;
 import in.voiceme.app.voiceme.views.MainNavDrawer;
 
 
@@ -23,20 +23,20 @@ public class DiscoverActivity extends BaseAuthenticatedActivity {
         setNavDrawer(new MainNavDrawer(this));
 
        // ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
-        // viewPager.setAdapter(new DiscoverFragmentPagerAdapter(getSupportFragmentManager()));
+        // viewPager.setAdapter(new DiscoverActivityFragmentPagerAdapter(getSupportFragmentManager()));
 
-        ViewPager viewPager = (ViewPager) findViewById(R.id.mViewPgaer_ID);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.activity_discover_viewpager);
         this.addPages(viewPager);
 
         // Give the PagerSlidingTabStrip the ViewPager
-        SmartTabLayout tabsStrip = (SmartTabLayout) findViewById(R.id.mTAB_ID);
+        SmartTabLayout tabsStrip = (SmartTabLayout) findViewById(R.id.activity_discover_tab_layout);
         // Attach the view pager to the tab strip
         tabsStrip.setViewPager(viewPager);
     }
 
     //add all pages
     private void addPages(ViewPager pager){
-        DiscoverFragmentPagerAdapter adapter = new DiscoverFragmentPagerAdapter(getSupportFragmentManager());
+        DiscoverActivityFragmentPagerAdapter adapter = new DiscoverActivityFragmentPagerAdapter(getSupportFragmentManager());
         adapter.addPage(new DiscoverLatestFragment());
         adapter.addPage(new DiscoverPopularFragment());
         adapter.addPage(new DiscoverTrendingFragment());

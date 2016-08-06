@@ -11,6 +11,11 @@ import android.view.View;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 
 import in.voiceme.app.voiceme.R;
+import in.voiceme.app.voiceme.fragments.ActivityInteractionFragment;
+import in.voiceme.app.voiceme.fragments.ActivityYourFeedFragment;
+import in.voiceme.app.voiceme.fragments.DiscoverLatestFragment;
+import in.voiceme.app.voiceme.fragments.DiscoverPopularFragment;
+import in.voiceme.app.voiceme.fragments.DiscoverTrendingFragment;
 import in.voiceme.app.voiceme.views.MainActivityFragmentPagerAdapter;
 import in.voiceme.app.voiceme.views.MainNavDrawer;
 
@@ -33,13 +38,23 @@ public class MainActivity extends BaseAuthenticatedActivity {
         });
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager_main_activity);
-        viewPager.setAdapter(new MainActivityFragmentPagerAdapter(getSupportFragmentManager()));
+        this.addPages(viewPager);
 
         // Give the PagerSlidingTabStrip the ViewPager
         SmartTabLayout tabsStrip = (SmartTabLayout) findViewById(R.id.tabs_main_activity);
         // Attach the view pager to the tab strip
         tabsStrip.setViewPager(viewPager);
 
+    }
+
+    //add all pages
+    private void addPages(ViewPager pager){
+        MainActivityFragmentPagerAdapter adapter = new MainActivityFragmentPagerAdapter(getSupportFragmentManager());
+        adapter.addPage(new ActivityYourFeedFragment());
+        adapter.addPage(new ActivityInteractionFragment());
+
+        //set adapter to pager
+        pager.setAdapter(adapter);
     }
 
     @Override

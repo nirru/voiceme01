@@ -14,13 +14,13 @@ import in.voiceme.app.voiceme.fragments.DiscoverTrendingFragment;
 /**
  * Created by Harish on 7/29/2016.
  */
-public class DiscoverFragmentPagerAdapter extends FragmentPagerAdapter {
+public class DiscoverActivityFragmentPagerAdapter extends FragmentPagerAdapter {
     ArrayList<Fragment> pages = new ArrayList<>();
 
     final int PAGE_COUNT = 3;
     private String tabTitles[] = new String[] { "Latest", "Trending", "Popular" };
 
-    public DiscoverFragmentPagerAdapter(FragmentManager fm) {
+    public DiscoverActivityFragmentPagerAdapter(FragmentManager fm) {
         super(fm);
     }
 

@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import in.voiceme.app.voiceme.R;
-import in.voiceme.app.voiceme.views.Movie;
+import in.voiceme.app.voiceme.views.UserPostDetails;
 import in.voiceme.app.voiceme.views.MyRecyclerAdapter;
 
 
@@ -50,20 +50,21 @@ public class DiscoverLatestFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.fragment_discover_latest, container, false);
 
         //recyclerview
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.mRecyclerCrime);
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.fragment_discover_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
-        recyclerView.setAdapter(new MyRecyclerAdapter(this.getActivity(), getCrimeMovies()));
+        recyclerView.setAdapter(new MyRecyclerAdapter(this.getActivity(), getDiscoverLatest()));
 
         return view;
     }
 
-    private ArrayList<Movie> getCrimeMovies(){
+    private ArrayList<UserPostDetails> getDiscoverLatest(){
         // collection of crime movies
-        ArrayList<Movie> movies = new ArrayList<>();
-        Movie movie = new Movie(R.mipmap.ic_launcher,
-                                "timestofly",
+        ArrayList<UserPostDetails> movies = new ArrayList<>();
+
+        UserPostDetails movie = new UserPostDetails(R.mipmap.ic_launcher,
+                                "DavidU",
                                 "is",
-                                "sad",
+                                "happy",
                                 "family",
                                 "5 minutes ago",
                                 "this is a sample post message",
@@ -71,44 +72,44 @@ public class DiscoverLatestFragment extends BaseFragment {
                                 R.drawable.ic_play_circle_outline_black_24dp);
         movies.add(movie);
 
-        movie = new Movie(R.mipmap.ic_launcher,
-                "timestofly",
+        movie = new UserPostDetails(R.mipmap.ic_launcher,
+                "sussy",
                 "is",
                 "sad",
-                "family",
-                "5 minutes ago",
-                "this is a sample post message",
+                "social",
+                "10 minutes ago",
+                "this is a sample post message, this is a sample post message, this is a sample post message",
                 "READ MORE....",
                 R.drawable.ic_play_circle_outline_black_24dp);
         movies.add(movie);
 
-        movie = new Movie(R.mipmap.ic_launcher,
-                "timestofly",
+        movie = new UserPostDetails(R.mipmap.ic_launcher,
+                "morene",
                 "is",
-                "sad",
-                "family",
-                "5 minutes ago",
-                "this is a sample post message",
+                "angry",
+                "health",
+                "25 minutes ago",
+                "this is a sample post message, this is a sample post message, this is a sample post message",
                 "READ MORE....",
                 R.drawable.ic_play_circle_outline_black_24dp);
         movies.add(movie);
 
-        movie = new Movie(R.mipmap.ic_launcher,
+        movie = new UserPostDetails(R.mipmap.ic_launcher,
                 "timestofly",
                 "is",
-                "sad",
+                "happy",
                 "family",
-                "5 minutes ago",
-                "this is a sample post message",
+                "35 minutes ago",
+                "this is a sample post message,this is a sample post message",
                 "READ MORE....",
                 R.drawable.ic_play_circle_outline_black_24dp);
         movies.add(movie);
 
-        movie = new Movie(R.mipmap.ic_launcher,
+        movie = new UserPostDetails(R.mipmap.ic_launcher,
                 "timestofly",
                 "is",
                 "sad",
-                "family",
+                "other",
                 "5 minutes ago",
                 "this is a sample post message",
                 "READ MORE....",
