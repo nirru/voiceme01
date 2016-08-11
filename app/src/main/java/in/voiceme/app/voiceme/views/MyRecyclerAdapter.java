@@ -7,6 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.like.LikeButton;
+import com.like.OnLikeListener;
+
 import java.util.ArrayList;
 
 import in.voiceme.app.voiceme.R;
@@ -14,7 +17,10 @@ import in.voiceme.app.voiceme.R;
 /**
  * Created by Harish on 7/31/2016.
  */
-public class MyRecyclerAdapter extends RecyclerView.Adapter<MyViewHolder> {
+public class MyRecyclerAdapter extends RecyclerView.Adapter<MyViewHolder> implements OnLikeListener {
+    private LikeButton likeButton;
+    private LikeButton HugButton;
+    private LikeButton SameButton;
 
     public Context context;
     ArrayList<UserPostDetails> userDetails;
@@ -28,6 +34,10 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyViewHolder> {
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_posts_cardview, null);
+        likeButton = (LikeButton) view.findViewById(R.id.list_item_like_button);
+        HugButton = (LikeButton) view.findViewById(R.id.list_item_hug_button);
+        SameButton = (LikeButton) view.findViewById(R.id.list_item_same_button);
+
         MyViewHolder holder = new MyViewHolder(view);
 
         return holder;
@@ -45,6 +55,10 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyViewHolder> {
         holder.user_avatar.setImageResource(userDetails.get(position).getAvatarUrl());
         holder.play_button.setImageResource(userDetails.get(position).getPlayButton());
 
+        likeButton.setOnLikeListener(this);
+        HugButton.setOnLikeListener(this);
+        SameButton.setOnLikeListener(this);
+
         //listener
         holder.setItemClickListener(new ItemClickListener() {
             @Override
@@ -52,10 +66,23 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyViewHolder> {
                 Toast.makeText(context, userDetails.get(position).getUsername(), Toast.LENGTH_SHORT).show();
             }
         });
+
+
     }
 
     @Override
     public int getItemCount() {
         return userDetails.size();
+    }
+
+    @Override
+    public void liked(LikeButton likeButton) {
+        Toast.makeText(context, "Liked!", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void unLiked(LikeButton likeButton) {
+
+        Toast.makeText(context, "Disliked!", Toast.LENGTH_SHORT).show();
     }
 }

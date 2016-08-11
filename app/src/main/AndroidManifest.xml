@@ -3,7 +3,7 @@
     package="in.voiceme.app.voiceme">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:name=".infrastructure.VoicemeApplication"
         android:allowBackup="true"
@@ -27,23 +27,38 @@
             android:label="@string/title_activity_login"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-
-        <activity android:name=".activities.LoginNarrowActivity" android:screenOrientation="portrait" />
-
-        <activity android:name=".activities.RegisterActivity" android:screenOrientation="portrait" />
-
-        <activity android:name=".activities.ExternalLoginActivity" android:screenOrientation="portrait" />
-
-        <activity android:name=".activities.ProfileActivity" android:screenOrientation="portrait" />
-
-        <activity android:name=".activities.HomeActivity" android:screenOrientation="portrait" />
-
-        <activity android:name=".activities.DiscoverActivity" android:screenOrientation="portrait" />
-
-        <activity android:name="com.soundcloud.android.crop.CropImageActivity" android:screenOrientation="portrait" />
-
-        <activity android:name=".activities.AuthenticationActivity" android:screenOrientation="portrait" />
-
+        <activity
+            android:name=".activities.LoginNarrowActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.RegisterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.ExternalLoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.ProfileActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.HomeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.DiscoverActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.soundcloud.android.crop.CropImageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.AuthenticationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.TextStatus"
+            android:label="@string/title_activity_text_status"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activities.AudioStatus"
+            android:label="@string/title_activity_audio_status"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

@@ -8,11 +8,27 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.reflect.TypeToken;
+import com.like.LikeButton;
 
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
+
+import in.voiceme.app.voiceme.AppConstants;
 import in.voiceme.app.voiceme.R;
+import in.voiceme.app.voiceme.adapter.LatestListAdapter;
+import in.voiceme.app.voiceme.pojo.LatestModal;
+import in.voiceme.app.voiceme.services.ServiceFactory;
+import in.voiceme.app.voiceme.services.WebService;
 import in.voiceme.app.voiceme.views.UserPostDetails;
 import in.voiceme.app.voiceme.views.MyRecyclerAdapter;
+import rx.Observable;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 
 public class DiscoverLatestFragment extends BaseFragment {
@@ -20,6 +36,8 @@ public class DiscoverLatestFragment extends BaseFragment {
 
     private int mPage;
 
+    private LatestListAdapter latestListAdapter;
+    private RecyclerView recyclerView;
 
     public DiscoverLatestFragment() {
         // Required empty public constructor
@@ -48,13 +66,25 @@ public class DiscoverLatestFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_discover_latest, container, false);
+        try {
+            initUiView(view);
+            getData();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
         //recyclerview
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.fragment_discover_recyclerview);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
-        recyclerView.setAdapter(new MyRecyclerAdapter(this.getActivity(), getDiscoverLatest()));
+//        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.fragment_discover_recyclerview);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+//        recyclerView.setAdapter(new MyRecyclerAdapter(this.getActivity(), getDiscoverLatest()));
 
         return view;
+    }
+
+    private void initUiView(View view){
+        recyclerView = (RecyclerView) view.findViewById(R.id.fragment_discover_recyclerview);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
     }
 
     private ArrayList<UserPostDetails> getDiscoverLatest(){
@@ -122,6 +152,49 @@ public class DiscoverLatestFragment extends BaseFragment {
     @Override
     public String toString() {
         return "documentary";
+    }
+
+    private void getData() throws Exception{
+        WebService service = ServiceFactory.createRetrofitService(WebService.class, AppConstants.BASE_URL);
+        Observable<JsonArray> reportResponseObservable = service.getLatestFeed();
+        reportResponseObservable.subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<JsonArray>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        e.printStackTrace();
+                    }
+
+                    @Override
+                    public void onNext(JsonArray response) {
+                        String jsonString = response.toString();
+                        Type listType = new TypeToken<List<LatestModal>>() {}.getType();
+                        List<LatestModal> myList = new Gson().fromJson(jsonString, listType);
+                        showRecycleWithDataFilled(myList);
+                    }
+                });
+    }
+
+    private void showRecycleWithDataFilled(final List<LatestModal> myList){
+        latestListAdapter = new LatestListAdapter(myList,getActivity());
+        latestListAdapter.setOnItemClickListener(new LatestListAdapter.MyClickListener() {
+            @Override
+            public void onItemClick(int position, View v) {
+                LatestModal item = myList.get(position);
+                String name = item.getIdUserName();
+            }
+
+            @Override
+            public void onLikeUnlikeClick(int position, LikeButton v) {
+
+            }
+        });
+        recyclerView.setAdapter(latestListAdapter);
     }
 
 }

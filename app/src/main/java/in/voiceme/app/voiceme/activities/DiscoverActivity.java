@@ -14,6 +14,7 @@ import in.voiceme.app.voiceme.views.MainNavDrawer;
 
 
 public class DiscoverActivity extends BaseAuthenticatedActivity {
+
     private static final int REQUEST_VIEW_MESSAGE = 1;
 
     @Override
@@ -24,6 +25,7 @@ public class DiscoverActivity extends BaseAuthenticatedActivity {
 
        // ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
         // viewPager.setAdapter(new DiscoverActivityFragmentPagerAdapter(getSupportFragmentManager()));
+
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.activity_discover_viewpager);
         this.addPages(viewPager);
@@ -44,6 +46,5 @@ public class DiscoverActivity extends BaseAuthenticatedActivity {
         //set adapter to pager
         pager.setAdapter(adapter);
     }
-
 
 }

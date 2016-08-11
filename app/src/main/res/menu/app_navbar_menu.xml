@@ -1,20 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <item
-        android:id="@+id/action_text"
-        android:icon="@mipmap/ic_action_edit"
-        android:orderInCategory="100"
-        android:title="Text"
-        app:showAsAction="never" />
 
     <item
-        android:id="@+id/action_audio"
+        android:id="@+id/testing"
         android:icon="@mipmap/ic_action_user"
         android:orderInCategory="100"
-        android:title="Audio"
+        android:title="Setting"
         app:showAsAction="never" />
+
 
 
 </menu>

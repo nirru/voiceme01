@@ -1,25 +1,24 @@
 package in.voiceme.app.voiceme.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 
 import in.voiceme.app.voiceme.R;
 import in.voiceme.app.voiceme.fragments.ActivityInteractionFragment;
 import in.voiceme.app.voiceme.fragments.ActivityYourFeedFragment;
-import in.voiceme.app.voiceme.fragments.DiscoverLatestFragment;
-import in.voiceme.app.voiceme.fragments.DiscoverPopularFragment;
-import in.voiceme.app.voiceme.fragments.DiscoverTrendingFragment;
 import in.voiceme.app.voiceme.views.MainActivityFragmentPagerAdapter;
 import in.voiceme.app.voiceme.views.MainNavDrawer;
+import io.github.yavski.fabspeeddial.FabSpeedDial;
+import io.github.yavski.fabspeeddial.SimpleMenuListenerAdapter;
 
 public class MainActivity extends BaseAuthenticatedActivity {
+
+
 
     @Override
     protected void onVoicemeCreate(Bundle savedInstanceState) {
@@ -27,13 +26,18 @@ public class MainActivity extends BaseAuthenticatedActivity {
         getSupportActionBar().setTitle("Activity");
         setNavDrawer(new MainNavDrawer(this));
 
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        FabSpeedDial fabSpeedDial = (FabSpeedDial) findViewById(R.id.fab_speed_dial);
+        fabSpeedDial.setMenuListener(new SimpleMenuListenerAdapter() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public boolean onMenuItemSelected(MenuItem menuItem) {
+                if (menuItem.getItemId() == R.id.action_text){
+                    startActivity(new Intent(MainActivity.this, TextStatus.class));
+                    return true;
+                } else if (menuItem.getItemId() == R.id.action_audio){
+                    startActivity(new Intent(MainActivity.this, AudioStatus.class));
+                    return true;
+                }
+                return false;
             }
         });
 
@@ -60,7 +64,7 @@ public class MainActivity extends BaseAuthenticatedActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.app_navbar_menu, menu);
         return true;
     }
 
@@ -72,10 +76,12 @@ public class MainActivity extends BaseAuthenticatedActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.testing) {
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
+
+
 }
